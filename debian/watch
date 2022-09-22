@@ -1,0 +1,8 @@
+version=4
+opts=\
+dversionmangle=s/\+(debian|dfsg|ds|deb)\.?\d*$//,\
+uversionmangle=s/(\d)[_\.\-\+]?((RC|rc|pre|dev|b|beta|a|alpha)\d*)$/$1~$2/;s/RC/rc/;s/\-/\./g,\
+filenamemangle=s/(?:.*?)?(?:rel|v|pykdtree)?[\-\_]?(\d\S+)\.(tgz|tbz|txz|(?:tar\.(?:gz|bz2|xz)))/pykdtree-$1.$2/,\
+repacksuffix=+ds \
+https://github.com/storpipfugl/pykdtree/tags \
+(?:.*?/archive/(?:.*?/)?)?(?:rel|v|pykdtree)?[\-\_]?(\d[\d\-\.]+)\.(?:tgz|tbz|txz|(?:tar\.(?:gz|bz2|xz)))

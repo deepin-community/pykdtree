@@ -1,0 +1,41 @@
+Source: pykdtree
+Maintainer: Debian GIS Project <pkg-grass-devel@lists.alioth.debian.org>
+Uploaders: Antonio Valentino <antonio.valentino@tiscali.it>
+Section: python
+Priority: optional
+Rules-Requires-Root: no
+Testsuite: autopkgtest-pkg-python
+Build-Depends: debhelper-compat (= 12),
+               dh-python,
+               cython3,
+               python3-all-dev,
+               python3-mako,
+               python3-nose,
+               python3-numpy,
+               python3-setuptools
+Standards-Version: 4.6.0
+Vcs-Browser: https://salsa.debian.org/debian-gis-team/pykdtree
+Vcs-Git: https://salsa.debian.org/debian-gis-team/pykdtree.git
+Homepage: https://github.com/storpipfugl/pykdtree
+
+Package: python3-pykdtree
+Architecture: any
+Depends: ${shlibs:Depends},
+         ${python3:Depends},
+         ${misc:Depends}
+Description: Fast kd-tree implementation with OpenMP-enabled queries (Python 3 version)
+ pykdtree is a kd-tree implementation for fast nearest neighbour search
+ in Python. The aim is to be the fastest implementation around for
+ common use cases (low dimensions and low number of neighbours) for
+ both tree construction and queries.
+ .
+ The implementation is based on scipy.spatial.cKDTree and libANN by
+ combining the best features from both and focus on implementation
+ efficiency.
+ .
+ The interface is similar to that of scipy.spatial.cKDTree except only
+ Euclidean distance measure is supported.
+ .
+ Queries are optionally multithreaded using OpenMP.
+ .
+ This is the Python 3 version of the package.
