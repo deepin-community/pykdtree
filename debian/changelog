@@ -1,3 +1,66 @@
+pykdtree (1.3.9+ds-1) unstable; urgency=medium
+
+  [ Bas Couwenberg ]
+  * Remove generated files in clean target.
+  * Switch to dh-sequence-*.
+
+  [ Antonio Valentino ]
+  * New upstream release.
+  * debian/control:
+    - Use <!nocheck> marker.
+    - Buold-depend on pybuild-plugin-pyproject.
+  * Switch to autopkgtest-pkg-pybuild and drop the
+    no longer needed d/tests folder.
+  * New d/python3-pykdtree.lintian-overrides file.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Sat, 23 Sep 2023 16:11:49 +0000
+
+pykdtree (1.3.7+ds-1) unstable; urgency=medium
+
+  [ Bas Couwenberg ]
+  * Enable numpy3 dh helper.
+  * Enable Salsa CI.
+  * Bump Standards-Version to 4.6.2, no changes.
+
+  [ Antonio Valentino ]
+  * New upstream release.
+  * Update copyright dates in d/copyright.
+  * Bump debhelper-compat version to 13.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Sun, 11 Jun 2023 15:48:12 +0000
+
+pykdtree (1.3.6+ds-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Mon, 31 Oct 2022 17:41:24 +0000
+
+pykdtree (1.3.5+ds-3) unstable; urgency=medium
+
+  [ Bas Couwenberg ]
+  * Bump Standards-Version to 4.6.1, no changes.
+  * Use supported python3 versions in autopkgtest.
+
+  [ Antonio Valentino ]
+  * Fix d/copyright formatting.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Sat, 15 Oct 2022 14:12:14 +0000
+
+pykdtree (1.3.5+ds-2) unstable; urgency=medium
+
+  * Fix autopkgtest.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Sun, 12 Jun 2022 10:06:55 +0000
+
+pykdtree (1.3.5+ds-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Update dependencies in d/control and d/tests/control.
+  * Update d/tests/python3 to use pytest.
+  * Update d/copyright.
+
+ -- Antonio Valentino <antonio.valentino@tiscali.it>  Sat, 11 Jun 2022 10:54:35 +0000
+
 pykdtree (1.3.4+ds-2) unstable; urgency=medium
 
   [ Bas Couwenberg ]

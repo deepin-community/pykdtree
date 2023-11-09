@@ -1,7 +1,5 @@
-.. image:: https://travis-ci.org/storpipfugl/pykdtree.svg?branch=master
-    :target: https://travis-ci.org/storpipfugl/pykdtree
-.. image:: https://ci.appveyor.com/api/projects/status/ubo92368ktt2d25g/branch/master
-    :target: https://ci.appveyor.com/project/storpipfugl/pykdtree
+.. image:: https://github.com/storpipfugl/pykdtree/actions/workflows/deploy-wheels.yml/badge.svg?branch=master
+    :target: https://github.com/storpipfugl/pykdtree/actions/workflows/deploy-wheels.yml
 
 ========
 pykdtree
@@ -21,17 +19,55 @@ Queries are optionally multithreaded using OpenMP.
 Installation
 ------------
 
-By default pykdtree is built with OpenMP enabled queries using libgomp except
-on OSX systems using the clang compiler (conda environments use a separate
-compiler).
+Pykdtree can be installed via pip:
+
+.. code-block:: bash
+
+    pip install pykdtree
+    
+Or, if in a conda-based environment, with conda from the conda-forge channel:
+
+.. code-block:: bash
+
+    conda install -c conda-forge pykdtree
+    
+Note that by default these packages (the binary wheels on PyPI and the binary
+package on conda-forge) are only built with OpenMP for linux platforms.
+To attempt to build from source with OpenMP support do:
+
+.. code-block:: bash
+
+    export USE_OMP="probe"
+    pip install --no-binary pykdtree pykdtree
+    
+This may not work on some systems that don't have OpenMP installed. See the below development
+instructions for more guidance. Disabling OpenMP can be accomplished by setting `USE_OMP` to ``"0"``
+in the above commands.
+
+Development Installation
+------------------------
+
+If you wish to contribute to pykdtree then it is a good idea to install from source
+so you can quickly see the effects of your changes.
+By default pykdtree is built with OpenMP enabled queries on unix-like systems.
+On linux this is done using libgomp. On OSX systems OpenMP is provided using the
+clang compiler (conda environments use a separate compiler).
 
 .. code-block:: bash
 
     $ cd <pykdtree_dir>
-    $ python setup.py install
+    $ pip install -e .
 
-If it fails with undefined compiler flags or you want to use another OpenMP
-implementation please modify setup.py at the indicated point to match your system.
+This installs pykdtree in an "editable" mode where changes to the Python files
+are automatically reflected when running a new python interpreter instance
+(ex. running a python script that uses pykdtree). It does not automatically rebuild
+or recompile the `.mako` templates and `.pyx` Cython code in pykdtree. Editing
+these files requires running the `pykdtree/render_template.py` script and then
+rerunning the pip command above to recompile the Cython files.
+
+If installation fails with undefined compiler flags or you want to use another OpenMP
+implementation you may need to modify setup.py or specify additional pip command line
+flags to match the library locations on your system.
 
 Building without OpenMP support is controlled by the USE_OMP environment variable
 
@@ -39,22 +75,37 @@ Building without OpenMP support is controlled by the USE_OMP environment variabl
 
     $ cd <pykdtree_dir>
     $ export USE_OMP=0
-    $ python setup.py install
+    $ pip install -e .
 
 Note evironment variables are by default not exported when using sudo so in this case do
 
 .. code-block:: bash
 
-    $ USE_OMP=0 sudo -E python setup.py install
+    $ USE_OMP=0 sudo -E pip install -e .
 
-Pykdtree can also be installed with conda via the conda-forge channel:
 
-.. code-block:: bash
+Control OpenMP usage
+^^^^^^^^^^^^^^^^^^^^
 
-    $ conda install -c conda-forge pykdtree
+The ``USE_OMP`` variable can be set to one of a couple different options. If
+set to ``"probe"``, the installation process (``setup.py``) will attempt to
+determine what variant of OpenMP is available based on the compiler being used,
+the platform being run on, and the Python environment being run with. It will
+then use the flags specified by one of the other ``USE_OMP`` modes. Note that
+in the case of MacOS, it will also try to identify if OpenMP is available from
+macports or homebrew and include the necessary include and library paths.
+
+If set to ``"gcc"`` or ``"gomp"`` then compiler and linking flags will be set
+appropriately for "GNU OpenMP" (gomp) library. If set to ``"clang"`` or 
+``"omp"`` then the flags will be set to support the "omp" library. If set to
+``"msvc"`` then flags will be set for the Microsoft Visual C++ compiler's
+OpenMP variant. For backwards compatibility the previous ``"1"`` has the same
+behavior as ``"probe"``. As mentioned above ``"0"`` can be used to disable
+any detection of OpenMP or attempt to compile with it.
 
 Usage
 -----
+
 The usage of pykdtree is similar to scipy.spatial.cKDTree so for now refer to its documentation
 
     >>> from pykdtree.kdtree import KDTree
@@ -103,12 +154,12 @@ Note: mileage will vary with the dataset at hand and computer architecture.
 
 Test
 ----
-Run the unit tests using nosetest
+Run the unit tests using pytest
 
 .. code-block:: bash
 
     $ cd <pykdtree_dir>
-    $ python setup.py nosetests
+    $ pytest
 
 Installing on AppVeyor
 ----------------------
@@ -132,33 +183,3 @@ turned off by adding the following to `appveyor.yml` in the
       global:
         # Don't build with openmp because it isn't supported in appveyor's compilers
         USE_OMP: "0"
-
-Changelog
----------
-v1.3.4 : Fix Python 3.9 wheels not being built for linux
-
-v1.3.3 : Add compatibility to python 3.9
-
-v1.3.2 : Change OSX installation to not use OpenMP without conda interpreter
-
-v1.3.1 : Fix masking in the "query" method introduced in 1.3.0
-
-v1.3.0 : Keyword argument "mask" added to "query" method. OpenMP compilation now works for MS Visual Studio compiler
-
-v1.2.2 : Build process fixes
-
-v1.2.1 : Fixed OpenMP thread safety issue introduced in v1.2.0
-
-v1.2.0 : 64 and 32 bit MSVC Windows support added
-
-v1.1.1 : Same as v1.1 release due to incorrect pypi release
-
-v1.1 : Build process improvements. Add data attribute to kdtree class for scipy interface compatibility
-
-v1.0 : Switched license from GPLv3 to LGPLv3
-
-v0.3 : Avoid zipping of installed egg
-
-v0.2 : Reduced memory footprint. Can now handle single precision data internally avoiding copy conversion to double precision. Default leafsize changed from 10 to 16 as this reduces the memory footprint and makes it a cache line multiplum (negligible if any query performance observed in benchmarks). Reduced memory allocation for leaf nodes. Applied patch for building on OS X.
-
-v0.1 : Initial version.

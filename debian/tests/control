@@ -1,2 +1,0 @@
-Tests: python3
-Depends: python3-pykdtree, python3-all, python3-nose

@@ -8,20 +8,11 @@
 export DEB_BUILD_MAINT_OPTIONS=hardening=+all
 
 export PYBUILD_NAME=pykdtree
+export PYBUILD_TEST_ARGS=--pyargs ${PYBUILD_NAME}
 
 %:
-	dh $@ --with python3 --buildsystem=pybuild
+	dh $@ --buildsystem=pybuild
 
-override_dh_auto_configure:
-	dh_auto_configure
+execute_after_dh_auto_configure:
 	cython3 pykdtree/kdtree.pyx
 	cd pykdtree && python3 render_template.py
-
-override_dh_python3:
-	dh_python3 -ppython3-pykdtree
-	dh_numpy3 -ppython3-pykdtree
-
-override_dh_auto_clean:
-	dh_auto_clean
-	$(RM) -r pykdtree.egg-info
-	$(RM) pykdtree/kdtree.c pykdtree/_kdtree_core.c

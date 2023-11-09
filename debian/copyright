@@ -6,7 +6,7 @@ Source: https://github.com/storpipfugl/pykdtree
 Files-Excluded: pykdtree/_kdtree_core.c pykdtree/kdtree.c
 
 Files: *
-Copyright: 2013- Esben S. Nielsen <storpipfugl@gmail.com>
+Copyright: 2013-, Esben S. Nielsen <storpipfugl@gmail.com>
 License: LGPL-3+
  This package is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -25,7 +25,7 @@ License: LGPL-3+
  Public License can be found in "/usr/share/common-licenses/LGPL-3".
 
 Files: debian/*
-Copyright: 2013-2015 Antonio Valentino <antonio.valentino@tiscali.it>
+Copyright: 2013-2023, Antonio Valentino <antonio.valentino@tiscali.it>
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
