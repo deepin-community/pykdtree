@@ -1,3 +1,9 @@
+pykdtree (1.3.9+ds-1deepin1) unstable; urgency=medium
+
+  * No source change upload against python 3.12.
+
+ -- Tianyu Chen <sweetyfish@deepin.org>  Mon, 08 Jul 2024 09:54:04 +0200
+
 pykdtree (1.3.9+ds-1) unstable; urgency=medium
 
   [ Bas Couwenberg ]
