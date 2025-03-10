@@ -20,8 +20,9 @@ import sys
 import re
 
 import numpy as np
-from Cython.Build import cythonize
-from setuptools import setup, Extension
+from Cython.Build import build_ext
+from Cython.Distutils import Extension
+from setuptools import setup
 from setuptools.command.build_ext import build_ext
 
 
@@ -56,7 +57,7 @@ class build_ext_subclass(build_ext):
         comp = self.compiler.compiler_type
         omp_comp, omp_link = _omp_compile_link_args(comp)
         if comp in ('unix', 'cygwin', 'mingw32'):
-            extra_compile_args = ['-std=c99', '-O3'] + omp_comp
+            extra_compile_args = ['-std=c17', '-O3'] + omp_comp
             extra_link_args = omp_link
         elif comp == 'msvc':
             extra_compile_args = ['/Ox'] + omp_comp
@@ -188,15 +189,19 @@ with open('README.rst', 'r') as readme_file:
 extensions = [
     Extension('pykdtree.kdtree', sources=['pykdtree/kdtree.pyx', 'pykdtree/_kdtree_core.c'],
               include_dirs=[np.get_include()],
+              define_macros=[("NPY_NO_DEPRECATED_API", "NPY_1_7_API_VERSION")],
+              cython_directives={"language_level": "3"},
               ),
 ]
 
+
 setup(
     name='pykdtree',
-    version='1.3.9',
+    version='1.4.1',
     url="https://github.com/storpipfugl/pykdtree",
     description='Fast kd-tree implementation with OpenMP-enabled queries',
     long_description=readme,
+    long_description_content_type="text/x-rst",
     author='Esben S. Nielsen',
     author_email='storpipfugl@gmail.com',
     packages=['pykdtree'],
@@ -204,7 +209,7 @@ setup(
     install_requires=['numpy'],
     tests_require=['pytest'],
     zip_safe=False,
-    ext_modules=cythonize(extensions),
+    ext_modules=extensions,
     cmdclass={'build_ext': build_ext_subclass},
     classifiers=[
       'Development Status :: 5 - Production/Stable',
