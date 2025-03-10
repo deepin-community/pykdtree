@@ -1,5 +1,105 @@
-## Version 1.3.9 (2023/09/22)
+## Version 1.4.1 (2025/01/29)
 
+### Issues Closed
+
+* [Issue 138](https://github.com/storpipfugl/pykdtree/issues/138) - Another integer overflow issue ([PR 139](https://github.com/storpipfugl/pykdtree/pull/139) by [@lkeegan](https://github.com/lkeegan))
+* [Issue 137](https://github.com/storpipfugl/pykdtree/issues/137) - Mako template needs to be re-rendered ([PR 139](https://github.com/storpipfugl/pykdtree/pull/139) by [@lkeegan](https://github.com/lkeegan))
+
+In this release 2 issues were closed.
+
+### Pull Requests Merged
+
+#### Bugs fixed
+
+* [PR 139](https://github.com/storpipfugl/pykdtree/pull/139) - Fix additional integer overflow issues ([138](https://github.com/storpipfugl/pykdtree/issues/138), [137](https://github.com/storpipfugl/pykdtree/issues/137))
+
+In this release 1 pull request was closed.
+
+
+## Version 1.4.0 (2025/01/27)
+
+### Issues Closed
+
+* [Issue 38](https://github.com/storpipfugl/pykdtree/issues/38) - pydktree breaks down for very large number of data points ([PR 135](https://github.com/storpipfugl/pykdtree/pull/135) by [@lkeegan](https://github.com/lkeegan))
+
+In this release 1 issue was closed.
+
+### Pull Requests Merged
+
+#### Bugs fixed
+
+* [PR 126](https://github.com/storpipfugl/pykdtree/pull/126) - Fix the wrong syntax of pip install
+
+#### Features added
+
+* [PR 135](https://github.com/storpipfugl/pykdtree/pull/135) - Add automatic switching between 32-bit and 64-bit structures depending on number of points ([38](https://github.com/storpipfugl/pykdtree/issues/38), [38](https://github.com/storpipfugl/pykdtree/issues/38))
+
+In this release 2 pull requests were closed.
+
+
+## Version 1.3.13 (2024/09/04)
+
+### Issues Closed
+
+* [Issue 116](https://github.com/storpipfugl/pykdtree/issues/116) - Segmentation fault on empty points ([PR 119](https://github.com/storpipfugl/pykdtree/pull/119) by [@STNLd2](https://github.com/STNLd2))
+
+In this release 1 issue was closed.
+
+### Pull Requests Merged
+
+#### Bugs fixed
+
+* [PR 119](https://github.com/storpipfugl/pykdtree/pull/119) - Fixed empty pts segfault ([116](https://github.com/storpipfugl/pykdtree/issues/116))
+
+#### Features added
+
+* [PR 124](https://github.com/storpipfugl/pykdtree/pull/124) - Enable Python 3.13 wheel building and switch to C17 C standard
+
+In this release 2 pull requests were closed.
+
+
+
+## Version 1.3.12 (2024/04/12)
+
+### Pull Requests Merged
+
+#### Features added
+
+* [PR 113](https://github.com/storpipfugl/pykdtree/pull/113) - Build against numpy 2.0rc1
+
+In this release 1 pull request was closed.
+
+
+## Version 1.3.11 (2024/02/15)
+
+### Issues Closed
+
+* [Issue 106](https://github.com/storpipfugl/pykdtree/issues/106) - Gotchas when installing on MacOS ([PR 107](https://github.com/storpipfugl/pykdtree/pull/107) by [@djhoese](https://github.com/djhoese))
+
+In this release 1 issue was closed.
+
+### Pull Requests Merged
+
+#### Features added
+
+* [PR 109](https://github.com/storpipfugl/pykdtree/pull/109) - Build wheels with numpy 2
+* [PR 107](https://github.com/storpipfugl/pykdtree/pull/107) - Add OpenMP warning when extension fails to import ([106](https://github.com/storpipfugl/pykdtree/issues/106))
+
+In this release 2 pull requests were closed.
+
+
+## Version 1.3.10 (2023/11/29)
+
+### Pull Requests Merged
+
+#### Bugs fixed
+
+* [PR 102](https://github.com/storpipfugl/pykdtree/pull/102) - Switch to Cython 3 in build process
+
+In this release 1 pull request was closed.
+
+
+## Version 1.3.9 (2023/09/22)
 
 ### Pull Requests Merged
 
